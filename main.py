@@ -54,12 +54,20 @@ print(computer_cards)
 def calculate_score(hand):
   score=0
   for i in range(0,len(hand)):
-    score=score + hand[i]
+    if hand[i]==11:
+      score=score + hand[i]
+      if score>21:
+        score=score-10;
+        hand.remove(11)
+        hand.append(1)
+    else:
+      score+=hand[i]
   if score==21:
     score=0  #blackjack
-  return score
+  return print(score)
   
-
+calculate_score(user_cards)
+calculate_score(computer_cards)
 #Hint 7: Inside calculate_score() check for a blackjack (a hand with only 2 cards: ace + 10) and return 0 instead of the actual score. 0 will represent a blackjack in our game.
 
 #Hint 8: Inside calculate_score() check for an 11 (ace). If the score is already over 21, remove the 11 and replace it with a 1. You might need to look up append() and remove().
